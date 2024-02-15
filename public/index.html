@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="
+  https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+  "></script>
+  <link href="
+  https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+  " rel="stylesheet">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PictureIt</title>
+  <link rel="icon" type="image/x-icon" href="cat.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/010b6d5766.js" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></head> -->
+<body>
+  <div id="loader-wrapper">
+    <div class="loader" id="loader"></div> <!-- Spinner element -->
+  </div>
+  <div class="welcome-container" id="formScreen">
+    <!-- <div class="image-frame"></div> -->
+    <img class="image-frame" src="logo.png">
+    <h3 id="main-text" class="welcome-title">Welcome!</h3>
+    <input type="text" placeholder="Name:" id="nameField" class="welcome-input">
+    <button id='play' class="play-button" onclick="addName()">Play</button>
+  </div>
+
+
+
+<div id="secondScreen" class="container" style="display: none;">
+  <div class="top-bar">
+    <div class="timer">
+      <div>Starting in: </div>
+      <div class="time" id="timer">0:00</div>
+    </div>
+    <h3 id="player-count">
+      0/1 Players Ready
+    </h3>
+  </div>
+  
+
+  <div class="instructions">
+    <h3>How to Play</h3>
+
+    <p>Select a fun image from your gallery, upload it, and then attempt to guess who the owner is!</p>
+  </div>
+  <div id="upload-wrapper">
+    <label for="imageInput" id="inputlabel" class="custom-file-upload">
+      <i class="fa fa-cloud-upload"></i> Select Image
+    </label>
+    <input type="file" id="imageInput" class="custom-file-upload" accept="image/*">
+    <button class="choose-image-button" id="imageSubmit" onclick="uploadImage()">Upload Image</button>
+  </div>
+  
+</div>
+
+
+
+<div id="thirdScreen" class="game-timer-container" style="display: none;">
+
+  <div class="timer">
+    <div>
+      <span>Time Left: </span><span class="time" id="image-timer">0:29</span>
+    </div>
+  </div>
+  
+  <div class="picture-area">
+      <img src="" class="cat-picture" id="image">
+  </div>
+  <div class="name-choices" id="choices">
+
+  </div>
+</div>
+
+
+<div id="endScreen" style="display: none;">
+  <div class="game-end-title">Game End!</div>
+  <div class="leaderboard">
+    <h4 id="firstPlace"></h4>
+    <h4 id="secondPlace"></h4>
+    <h4 id="thirdPlace"></h4>
+  </div>
+  <p id="selfScore"></p>
+  <!-- <div class="image-container">
+    <img src="" class="cat-picture" id="finalImage">
+  </div>
+  <h4 id="finalImageName">John's Picture</h4>
+  <div class="arrow-container" id='switchArrow' onclick="toggleImage()">
+    &#10142; 
+  </div> -->
+
+  <section class="splide" aria-label="Splide Basic HTML Example">
+    <div class="splide__track">
+      <ul class="splide__list" id="slider1">
+        <!-- <li class="splide__slide">Slide 01</li>
+        <li class="splide__slide">Slide 02</li>
+        <li class="splide__slide">Slide 03</li> -->
+      </ul>
+    </div>
+  </section>
+  
+  <button id="playAgain" class="play-again-button" onclick="refreshPage()">Play Again</button>
+</div>
+
+
+
+<script>
+  var self;
+  var playerList = []; // This array will hold the collection's data
+  var imageList = [];
+  var imageIds = [];
+  var currentImage = '';
+  var timer;
+  var timerInterval = null;
+
+  
+
+
+const count = 200;
+const defaults = {
+  origin: { y: 0.7 }
+};
+
+function fire(particleRatio, opts) {
+  confetti({
+    ...defaults,
+    ...opts,
+    particleCount: Math.floor(count * particleRatio)
+  });
+}
+
+
+</script>
+
+<script src="userData.js"></script>
+<script src="script.js"></script>
+<script src="images.js"></script>
+<script src="snapshot.js"></script>
+
+<script>
+  function checkForReset(inputElement) {
+    if (inputElement.value.toUpperCase() === "RESET") {
+        resetEVERYTHING2();
+    }
+}
+
+window.onload = function() {
+    // Attach the event listener to your input field
+    document.getElementById("nameField").addEventListener("input", function() {
+        checkForReset(this);
+    });
+};
+
+
+
+
+</script>
+
+</body>
+</html>
