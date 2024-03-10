@@ -235,7 +235,7 @@ body {
 }
 
 .cat-picture {
-    max-width: 450px; /* Adjust based on actual image size */
+    max-width: -webkit-fill-available;
     margin: auto;
     height: 300px;
 }

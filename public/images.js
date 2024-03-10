@@ -155,7 +155,7 @@ function appendSlides() {
         imageElement.src = image.url;
     
         const name = document.createElement('h5');
-        name.textContent = playerList[index].name;
+        name.textContent = playerList.find(x => x.id === image.id).name;
         name.className = 'imageName';
         // Create a text node from playerList
         // const text = document.createTextNode(playerList[index].name);
